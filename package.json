@@ -1,0 +1,29 @@
+{
+  "name": "Birdsong",
+  "version": "1.0.0",
+  "description": "Selects music based on the emotional content of a Twitter user's tweets",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon listen.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leondelaimy/Birdsong.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leondelaimy/Birdsong/issues"
+  },
+  "homepage": "https://github.com/leondelaimy/Birdsong#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "colour": "^0.7.1",
+    "express": "^4.16.3",
+    "twit": "^2.2.9",
+    "util": "^0.10.3",
+    "watson-developer-cloud": "^3.2.1"
+  }
+}
