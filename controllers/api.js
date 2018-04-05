@@ -34,6 +34,7 @@ exports.getTone = (req, res, next) => {
                 for(key in emotionalTweets) {
                     pipeSpeechFile(twitter_handle, key, emotionalTweets[key].text);
                 }
+                res.send(emotionalTweets);
             })
         })        
     })    
