@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { getPersonalityInsight } = require('../controllers/api')
+const { getTone, getPersonalityInsight } = require('../controllers/api');
 
-router.get('/:twitter_handle', getPersonalityInsight)
+router.get('/:twitter_handle', getTone);
 
 module.exports = router;
