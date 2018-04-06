@@ -9,3 +9,7 @@ body {
     width: 800px;
     max-width: 90%;
 }
+
+.wrapper li {
+    color: black;
+}

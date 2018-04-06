@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <%- include('./partials/head.ejs') %>
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul>
+            <% emotionalTweetsArr.forEach((tweet, i) => { %>
+                <audio id="sound1" src=<%= tweet.path %>></audio>
+                <button onclick="document.getElementById('sound1').play();">
+                    <%= tweet.tone %>: <%= tweet.text %>
+                </button>
+
+            <% }) %>
+        </ul>
+    </div>    
+</body>
+
+</html>

@@ -8,8 +8,9 @@ const ta = new ToneAnalyzerV3(taCredentials);
 
 const tts = new TextToSpeechV1(ttsCredentials);
 
-
-exports.getTone = (req, res, next) => {
+let emotionalTweetsArr = [];
+exports.getSpeech = (req, res, next) => {
+    emotionalTweetsArr = [];
     const { twitter_handle } = req.params;
     fetchTweets(twitter_handle, (err, tweets) => {
         ta.tone({
@@ -38,9 +39,11 @@ exports.getTone = (req, res, next) => {
                     }, (err, data) => {
                         fs.writeFile(`./speech/${twitter_handle}/${tone}.wav`, data, err => {
                             console.log(tone, 'file written');
+                            emotionalTweetsArr.push({ tone, text: emotionalTweets[tone].text, path: `/Users/Leon/Northcoders/Code/Week-5/Birdsong/speech/${twitter_handle}/${tone}.wav` })
                             count++;
                             if (count === keyArr.length) {
-                                res.send(emotionalTweets);
+                                console.log(emotionalTweetsArr)
+                                res.render('user.ejs', { emotionalTweetsArr });
                             }
                         });
                     });                
