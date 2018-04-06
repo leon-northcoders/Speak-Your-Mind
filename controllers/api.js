@@ -11,8 +11,10 @@ const tts = new TextToSpeechV1(ttsCredentials);
 
 let emotionalTweetsArr = [];
 exports.getSpeech = (req, res, next) => {
+    console.log("hi")
     emotionalTweetsArr = [];
-    const { twitter_handle } = req.params;
+    const { twitter_handle } = req.query;
+    console.log(req.query)
     fetchTweets(twitter_handle, (err, tweets, profileImgURL) => {
         ta.tone({
             tone_input: tweets,
