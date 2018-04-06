@@ -1,11 +1,8 @@
-const PersonalityInsightsV3 = require('watson-developer-cloud/personality-insights/v3');
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
 const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
-const { piCredentials , taCredentials, ttsCredentials} = require('../config');
+const {taCredentials, ttsCredentials} = require('../config');
 const fs = require('fs');
 const { fetchTweets } = require('../models/api')
-
-const pi = new PersonalityInsightsV3(piCredentials);
 
 const ta = new ToneAnalyzerV3(taCredentials);
 
@@ -31,33 +28,24 @@ exports.getTone = (req, res, next) => {
                 return acc;
             }, {})
             fs.mkdir(`./speech/${twitter_handle}`, err => {
-                for(key in emotionalTweets) {
-                    pipeSpeechFile(twitter_handle, key, emotionalTweets[key].text);
-                }
-                res.send(emotionalTweets);
+                const keyArr = Object.keys(emotionalTweets);
+                let count = 0;
+                keyArr.forEach(tone => {
+                    tts.synthesize({
+                        text: emotionalTweets[tone].text,
+                        voice: "en-GB_KateVoice",
+                        accept: "audio/wav"
+                    }, (err, data) => {
+                        fs.writeFile(`./speech/${twitter_handle}/${tone}.wav`, data, err => {
+                            console.log(tone, 'file written');
+                            count++;
+                            if (count === keyArr.length) {
+                                res.send(emotionalTweets);
+                            }
+                        });
+                    });                
+                });
             })
-        })        
-    })    
-}
-
-pipeSpeechFile = (handle, tone, sentence) => {
-    tts.synthesize({
-        text: sentence,
-        voice: "en-GB_KateVoice",
-        accept: "audio/wav"
-    }).pipe(fs.createWriteStream(`./speech/${handle}/${tone}.wav`));
-}
-
-exports.getPersonalityInsight = (req, res, next) => {
-
-    const { twitter_handle } = req.params;
-    fetchTweets(twitter_handle, (err, tweets) => {
-        pi.profile({
-            content: tweets,
-            content_type: 'text/plain'
-        }, (err, watsonData) => {
-            if(err) console.log(err);
-            res.send(watsonData);
         })        
     })    
 }

@@ -1,9 +1,16 @@
-const app = require('express')();
+const express = require('express');
+const app = express();
 const bodyParser = require('body-parser');
 const apiRouter = require('./routes/api');
 
 app.use(bodyParser.json());
-app.use('/api', apiRouter);
+app.use('/user', apiRouter);
+
+app.set('view engine', 'ejs')
+app.use(express.static(__dirname + '/public'))
+app.get('/', (req, res, next) => {
+    res.render('home.ejs');
+});
 
 app.use('/*', (req, res, next) => next({ status: 404 }));
 
