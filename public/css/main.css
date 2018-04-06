@@ -13,3 +13,70 @@ body {
 .wrapper li {
     color: black;
 }
+
+.photo {
+    text-align: center;
+}
+
+.photo img {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border: 3px solid #78CDD7;
+    border-radius: 50%;
+    width: 300px;
+    height: auto;
+    max-width: 100%;
+}
+
+.home-btn:hover {
+    border: 3px solid white;
+} 
+
+button:hover, textarea:hover,
+button:focus, textarea:focus {
+	background-color:white;
+}
+
+#tone-button{
+	font-family: "Courier New";
+    float:left;
+    
+	width: 100%;
+	border: #fbfbfb solid 4px;
+	cursor:pointer;
+	background-color: #C11530;
+	color:white;
+	font-size:24px;
+	padding-top:22px;
+	padding-bottom:22px;
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	transition: all 0.3s;
+    margin-top:-4px;
+    font-weight:700;
+}
+
+#tone-button:hover{
+	background-color: rgba(0,0,0,0);
+	color: #C11530;
+}
+	
+.tone:hover {
+	color: #C11530;
+}
+	
+.ease {
+	width: 0px;
+	height: 74px;
+	background-color: #fbfbfb;
+	-webkit-transition: .3s ease;
+	-moz-transition: .3s ease;
+	-o-transition: .3s ease;
+	-ms-transition: .3s ease;
+	transition: .3s ease;
+}
+
+.tone:hover .ease{
+    width:100%;
+    background-color:white;
+}

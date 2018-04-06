@@ -6,6 +6,7 @@ const file = './tweets'
 
 const T = new Twit(keys)
 
+let profileImgURL;
 exports.fetchTweets = (twitter_handle, cb) => {
     T.get('statuses/user_timeline', { screen_name: twitter_handle, count: 100, include_rts: false, tweet_mode: 'extended' }, function(err, data, res) {
         if(Array.isArray(data)){
@@ -14,11 +15,13 @@ exports.fetchTweets = (twitter_handle, cb) => {
                 return obj.full_text.replace(/(http|@)\S+|\r?\n|\r|#/g, '')
             });
             tweets = tweets.join(' ')
+            profileImgURL = data[0].user.profile_image_url.replace('_normal', '')
+
             .replace(/\s{2,}|(undefined)/g, ' ')
             .replace(/&amp;/g, '&')
             console.log(tweets);
             console.log(`\n Character count: ${tweets.length}`)
-            cb(null, tweets)
+            cb(null, tweets, profileImgURL)
         }
         else console.log(`${user}': 404 page does not exist\n`.red)
     })

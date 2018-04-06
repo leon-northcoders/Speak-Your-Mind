@@ -3,6 +3,7 @@ const TextToSpeechV1 = require('watson-developer-cloud/text-to-speech/v1');
 const {taCredentials, ttsCredentials} = require('../config');
 const fs = require('fs');
 const { fetchTweets } = require('../models/api')
+const path = require('path');
 
 const ta = new ToneAnalyzerV3(taCredentials);
 
@@ -12,7 +13,7 @@ let emotionalTweetsArr = [];
 exports.getSpeech = (req, res, next) => {
     emotionalTweetsArr = [];
     const { twitter_handle } = req.params;
-    fetchTweets(twitter_handle, (err, tweets) => {
+    fetchTweets(twitter_handle, (err, tweets, profileImgURL) => {
         ta.tone({
             tone_input: tweets,
             content_type: 'text/plain'
@@ -28,7 +29,8 @@ exports.getSpeech = (req, res, next) => {
                 })
                 return acc;
             }, {})
-            fs.mkdir(`./speech/${twitter_handle}`, err => {
+            fs.mkdir(path.join(__dirname,`../public/speech/${twitter_handle}`), err => {
+                if(err) console.log(err)
                 const keyArr = Object.keys(emotionalTweets);
                 let count = 0;
                 keyArr.forEach(tone => {
@@ -37,13 +39,14 @@ exports.getSpeech = (req, res, next) => {
                         voice: "en-GB_KateVoice",
                         accept: "audio/wav"
                     }, (err, data) => {
-                        fs.writeFile(`./speech/${twitter_handle}/${tone}.wav`, data, err => {
+                        fs.writeFile(path.join(__dirname,`../public/speech/${twitter_handle}/${tone}.wav`), data, err => {
+                            if(err) console.log(err)
                             console.log(tone, 'file written');
-                            emotionalTweetsArr.push({ tone, text: emotionalTweets[tone].text, path: `/Users/Leon/Northcoders/Code/Week-5/Birdsong/speech/${twitter_handle}/${tone}.wav` })
+                            emotionalTweetsArr.push({ tone, text: emotionalTweets[tone].text, path: `/speech/${twitter_handle}/${tone}.wav` })
                             count++;
                             if (count === keyArr.length) {
                                 console.log(emotionalTweetsArr)
-                                res.render('user.ejs', { emotionalTweetsArr });
+                                res.render('user.ejs', { emotionalTweetsArr, profileImgURL });
                             }
                         });
                     });                
