@@ -23,6 +23,6 @@ exports.fetchTweets = (twitter_handle, cb) => {
             console.log(`\n Character count: ${tweets.length}`)
             cb(null, tweets, profileImgURL)
         }
-        else console.log(`${user}': 404 page does not exist\n`.red)
+        else console.log(`404 page does not exist\n`.red)
     })
 }
