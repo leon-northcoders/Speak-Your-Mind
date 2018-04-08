@@ -1,7 +1,7 @@
 {
-  "name": "Birdsong",
+  "name": "speak-your-mind",
   "version": "1.0.0",
-  "description": "Selects music based on the emotional content of a Twitter user's tweets",
+  "description": "Soundboard that reads out selected Twitter user's tweets based on their emotional content",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/leondelaimy/Birdsong.git"
+    "url": "git+https://github.com/leondelaimy/Speak-Your-Mind.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/leondelaimy/Birdsong/issues"
+    "url": "https://github.com/leondelaimy/Speak-Your-Mind/issues"
   },
-  "homepage": "https://github.com/leondelaimy/Birdsong#readme",
+  "homepage": "https://github.com/leondelaimy/Speak-Your-Mind#readme",
   "dependencies": {
     "body-parser": "^1.18.2",
     "colour": "^0.7.1",
@@ -27,5 +27,6 @@
     "twit": "^2.2.9",
     "util": "^0.10.3",
     "watson-developer-cloud": "^3.2.1"
-  }
+  },
+  "devDependencies": {}
 }

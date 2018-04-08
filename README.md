@@ -1,2 +1,2 @@
 # Speak Your Mind
-Speak-Your-Mind - Selects music based on the emotional content of a Twitter user's tweets
+Soundboard that reads out selected Twitter user's tweets based on their emotional content
