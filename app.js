@@ -15,7 +15,7 @@ app.get('/', (req, res, next) => {
 app.use('/*', (req, res, next) => next({ status: 404 }));
 
 app.use((err, req, res, next) => {
-    if(err.status === 404) res.status(404).send({ message: '404: Page Not Found.' })
+    if(err.status === 404) res.status(404).render('404.ejs');
     else next(err);
 });
 

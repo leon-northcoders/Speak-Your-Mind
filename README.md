@@ -1,2 +1,2 @@
-# Birdsong
-Selects tweets according to tone and plays the top scoring through text to speech API
+# Speak Your Mind
+Speak-Your-Mind - Selects music based on the emotional content of a Twitter user's tweets

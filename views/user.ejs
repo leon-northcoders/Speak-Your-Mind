@@ -3,27 +3,22 @@
 <head>
         <%- include('./partials/head.ejs') %>
 </head>
-
+<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 <body>
     <div class="wrapper">
 
         <header class="photo">
                 <a href="../"><img src="<%= profileImgURL %>" alt="Leon-photo" class="home-btn"></a>
         </header>
-
         <ul>
-            
             <% emotionalTweetsArr.forEach((tweet, i) => { %>
-                <audio id="sound<%= i+1 %>" src=<%= tweet.path %>></audio>
                 <div class="tone">
-                    <button id="tone-button" onclick="document.getElementById('sound<%= i+1 %>').play();">
+                    <button id="tone-button" onclick='responsiveVoice.speak("<%= tweet.text %>");'>
                         <%= tweet.tone %>
                     </button>
                     <div class="ease"></div>
                 </div>
-
             <% }) %>
         </ul>
     </div>  
-    
 </html>
