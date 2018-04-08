@@ -1,8 +1,12 @@
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
-const { taCredentials } = require('../config');
+// const { taCredentials } = require('../config');
 const { fetchTweets } = require('../models/api');
 
-const ta = new ToneAnalyzerV3(taCredentials);
+const ta = new ToneAnalyzerV3({
+    username: process.env.username,
+    password: process.env.password,
+    version_date: process.env.version_date
+});
 
 exports.getSpeech = (req, res, next) => {
     const { twitter_handle } = req.query;

@@ -1,7 +1,12 @@
-const { keys } = require('../config');
+// const { keys } = require('../config');
 const Twit = require('twit');
 
-const T = new Twit(keys)
+const T = new Twit({
+    consumer_key: process.env.consumer_key,
+    consumer_secret: process.env.consumer_secret,
+    access_token: process.env.access_token,
+    access_token_secret: process.env.access_token_secret
+})
 
 exports.fetchTweets = (twitter_handle, cb, res) => {
     T.get('statuses/user_timeline', { screen_name: twitter_handle, count: 100, include_rts: false, exclude_replies: true, tweet_mode: 'extended' }, function(err, data, res) {
