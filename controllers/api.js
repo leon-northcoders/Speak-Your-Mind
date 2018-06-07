@@ -8,7 +8,7 @@ const ta = new ToneAnalyzerV3({
     version_date: process.env.version_date
 });
 
-const ta = new ToneAnalyzerV3(ta)
+// const ta = new ToneAnalyzerV3(taCredentials)
 
 exports.getSpeech = (req, res, next) => {
     const { twitter_handle } = req.query;
