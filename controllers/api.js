@@ -1,5 +1,5 @@
 const ToneAnalyzerV3 = require('watson-developer-cloud/tone-analyzer/v3');
-const { taCredentials } = require('../config');
+// const { taCredentials } = require('../config');
 const { fetchTweets } = require('../models/api');
 
 const ta = new ToneAnalyzerV3({
