@@ -17,7 +17,7 @@ You will need to have Node installed before installing other dependencies. Infor
 
 1. Download a copy of the project through GitHub:
 ```
-git clone https://github.com/leondelaimy/Speak-Your-Mind.git
+git clone https://github.com/leon-northcoders/Speak-Your-Mind.git
 ```
 2. Download the necessary dependencies:
 ```
